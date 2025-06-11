@@ -1,0 +1,1008 @@
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <!-- Start book JavaSE -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>自定义封装JDBC工具类 | JavaSE</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="author" content="姜伟">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-splitter/splitter.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-tbfed-pagefooter/footer.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-chapter-fold/chapter-fold.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-prism/prism.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../chapter03/section06.html" />
+    
+    
+    <link rel="prev" href="../chapter03/section04.html" />
+    
+
+        <!-- head:end -->
+    </head>
+    <body>
+        <!-- body:start -->
+        
+    <div class="book"
+        data-level="3.4"
+        data-chapter-title="自定义封装JDBC工具类"
+        data-filepath="chapter03/section05.md"
+        data-basepath=".."
+        data-revision="Sat May 14 2022 08:42:14 GMT+0800 (中国标准时间)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        介绍
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="chapter01/section01.html">
+            
+                
+                    <a href="../chapter01/section01.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        数据库概述
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="chapter01/section02.html">
+            
+                
+                    <a href="../chapter01/section02.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        数据库分类
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="chapter01/section03.html">
+            
+                
+                    <a href="../chapter01/section03.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        关系型数据库
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="chapter01/section04.html">
+            
+                
+                    <a href="../chapter01/section04.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        MySQL的安装和配置
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="chapter01/section05.html">
+            
+                
+                    <a href="../chapter01/section05.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                        连接数据库
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="chapter01/section06.html">
+            
+                
+                    <a href="../chapter01/section06.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                        MySQL数据类型
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="chapter01/section07.html">
+            
+                
+                    <a href="../chapter01/section07.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                        MySQL运算符
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="chapter01/section08.html">
+            
+                
+                    <a href="../chapter01/section08.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.7.</b>
+                        
+                        MySQL语法规范
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="chapter02/section01.html">
+            
+                
+                    <a href="../chapter02/section01.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        MySQL语言组成
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="chapter02/section02/p01.html">
+            
+                
+                    <a href="../chapter02/section02/p01.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        结构操作DDL
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="chapter02/section02/p02.html">
+            
+                
+                    <a href="../chapter02/section02/p02.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.1.</b>
+                        
+                        数据库结构
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="chapter02/section02/p03.html">
+            
+                
+                    <a href="../chapter02/section02/p03.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.2.</b>
+                        
+                        表结构
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="chapter02/section02/p04.html">
+            
+                
+                    <a href="../chapter02/section02/p04.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.3.</b>
+                        
+                        字符集和校对集
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="chapter02/section02/p05.html">
+            
+                
+                    <a href="../chapter02/section02/p05.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.4.</b>
+                        
+                        乱码问题
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="chapter02/section02/p06.html">
+            
+                
+                    <a href="../chapter02/section02/p06.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.5.</b>
+                        
+                        约束和索引
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.5.1" data-path="chapter02/section02/p06/s01.html">
+            
+                
+                    <a href="../chapter02/section02/p06/s01.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.5.1.</b>
+                        
+                        主键约束
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5.2" data-path="chapter02/section02/p06/s02.html">
+            
+                
+                    <a href="../chapter02/section02/p06/s02.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.5.2.</b>
+                        
+                        唯一约束
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5.3" data-path="chapter02/section02/p06/s03.html">
+            
+                
+                    <a href="../chapter02/section02/p06/s03.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.5.3.</b>
+                        
+                        外键约束
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5.4" data-path="chapter02/section02/p06/s04.html">
+            
+                
+                    <a href="../chapter02/section02/p06/s04.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.5.4.</b>
+                        
+                        非空约束
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5.5" data-path="chapter02/section02/p06/s05.html">
+            
+                
+                    <a href="../chapter02/section02/p06/s05.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.5.5.</b>
+                        
+                        自增约束
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5.6" data-path="chapter02/section02/p06/s06.html">
+            
+                
+                    <a href="../chapter02/section02/p06/s06.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.5.6.</b>
+                        
+                        默认值约束
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5.7" data-path="chapter02/section02/p06/s07.html">
+            
+                
+                    <a href="../chapter02/section02/p06/s07.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.5.7.</b>
+                        
+                        检查约束
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="chapter02/section03.html">
+            
+                
+                    <a href="../chapter02/section03.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        增删改DML
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="chapter02/section04/p01.html">
+            
+                
+                    <a href="../chapter02/section04/p01.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        数据库查询DQL
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.3.1" data-path="chapter02/section04/p02.html">
+            
+                
+                    <a href="../chapter02/section04/p02.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.1.</b>
+                        
+                        查询语句
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.2" data-path="chapter02/section04/p03.html">
+            
+                
+                    <a href="../chapter02/section04/p03.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.2.</b>
+                        
+                        函数和流程控制语句
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.3" data-path="chapter02/section04/p04.html">
+            
+                
+                    <a href="../chapter02/section04/p04.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.3.</b>
+                        
+                        多表查询
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.4" data-path="chapter02/section04/p05.html">
+            
+                
+                    <a href="../chapter02/section04/p05.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.4.</b>
+                        
+                        子查询
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="chapter02/section05.html">
+            
+                
+                    <a href="../chapter02/section05.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        数据库事务
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="chapter02/section06.html">
+            
+                
+                    <a href="../chapter02/section06.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        数据库管理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="chapter02/section07.html">
+            
+                
+                    <a href="../chapter02/section07.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                        数据库的备份和导出
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="chapter03/section01.html">
+            
+                
+                    <a href="../chapter03/section01.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        JDBC
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="chapter03/section02.html">
+            
+                
+                    <a href="../chapter03/section02.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        JDBC代码实现
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="chapter03/section03.html">
+            
+                
+                    <a href="../chapter03/section03.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        PrepareStatement的使用
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="chapter03/section04.html">
+            
+                
+                    <a href="../chapter03/section04.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        数据库连接池
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.4" data-path="chapter03/section05.html">
+            
+                
+                    <a href="../chapter03/section05.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        自定义封装JDBC工具类
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="chapter03/section06.html">
+            
+                
+                    <a href="../chapter03/section06.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Apache的dbutils介绍
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    本书使用 GitBook 发布
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >JavaSE</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h2 id="jdbc&#x5DE5;&#x5177;&#x7C7B;&#x5C01;&#x88C5;">JDBC&#x5DE5;&#x5177;&#x7C7B;&#x5C01;&#x88C5;</h2>
+<ul>
+<li><p>&#x5DE5;&#x5177;&#x7C7B;&#xFF1A;</p>
+<ol>
+<li>ConnectionTools.java&#xFF1A;&#x7528;&#x6765;&#x7BA1;&#x7406;&#x6570;&#x636E;&#x5E93;&#x8FDE;&#x63A5;&#x6C60;&#x3002;</li>
+<li>BaseDAO.java&#xFF1A;&#x7528;&#x6765;&#x5B9E;&#x73B0;&#x57FA;&#x672C;&#x7684;DAO&#x64CD;&#x4F5C;&#x3002;</li>
+</ol>
+</li>
+<li><p>javaBen&#x7C7B;&#xFF1A;</p>
+<ul>
+<li>Employee.java&#xFF1A;&#x7528;&#x6765;&#x5B58;&#x653E;Java&#x5BF9;&#x8C61;&#xFF0C;&#x5B9E;&#x73B0;&#x6570;&#x636E;&#x5E93;&#x5B57;&#x6BB5;&#x548C;Java&#x5BF9;&#x8C61;&#x7684;&#x5173;&#x7CFB;&#x6620;&#x5C04;&#x3002;</li>
+<li>&#x4E3A;&#x4E86;&#x907F;&#x514D;&#x548C;MySQL&#x6570;&#x636E;&#x5E93;&#x5B57;&#x6BB5;&#x4E0D;&#x517C;&#x5BB9;&#xFF0C;&#x8FD9;&#x4E2A;JavaBean&#x91CC;&#x7684;&#x57FA;&#x672C;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x5C5E;&#x6027;&#x5E94;&#x8BE5;&#x4F7F;&#x7528;&#x57FA;&#x672C;&#x5305;&#x88C5;&#x7C7B;&#x578B;&#x3002;</li>
+</ul>
+</li>
+<li><p>&#x5B9E;&#x73B0;&#x7C7B;:</p>
+<ol>
+<li>EmployeeDAO.java&#xFF1A;&#x63A5;&#x53E3;&#xFF0C;&#x5728;&#x8FD9;&#x91CC;&#x5B9A;&#x4E49;&#x62BD;&#x8C61;&#x7684;&#x589E;&#x5220;&#x6539;&#x67E5;&#x65B9;&#x6CD5;&#x3002;</li>
+<li>EmployeeDAOImple.java&#xFF1A;&#x7EE7;&#x627F;&#x81EA; BaseDAO&#x5E76;&#x5B9E;&#x73B0;EmployeeDAO&#x63A5;&#x53E3;&#xFF0C;&#x5728;&#x8FD9;&#x4E2A;&#x7C7B;&#x91CC;&#x624D;&#x6709;&#x9488;&#x5BF9;&#x5BF9;&#x8C61;&#x548C;&#x8868;&#x683C;&#x7684;SQL&#x8BED;&#x53E5;&#x3002;</li>
+</ol>
+</li>
+</ul>
+<h3 id="1-connecttoolsjava">1. ConnectTools.java</h3>
+<pre><code class="lang-java"><span class="hljs-keyword">package</span> com.atguigu.jdbc.utils;
+
+<span class="hljs-keyword">import</span> com.alibaba.druid.pool.DruidDataSourceFactory;
+<span class="hljs-keyword">import</span> javax.sql.DataSource;
+<span class="hljs-keyword">import</span> java.io.InputStream;
+<span class="hljs-keyword">import</span> java.sql.Connection;
+<span class="hljs-keyword">import</span> java.sql.SQLException;
+<span class="hljs-keyword">import</span> java.util.Properties;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ConnectionTools</span> </span>{
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> DataSource dataSource = <span class="hljs-keyword">null</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> ThreadLocal&lt;Connection&gt; threadLocal = <span class="hljs-keyword">new</span> ThreadLocal&lt;&gt;();
+
+    <span class="hljs-keyword">static</span> {
+        InputStream fis = ClassLoader.getSystemClassLoader().getResourceAsStream(<span class="hljs-string">&quot;druid.properties&quot;</span>);
+        Properties prop = <span class="hljs-keyword">new</span> Properties();
+
+        <span class="hljs-keyword">try</span> {
+            prop.load(fis);
+            dataSource = DruidDataSourceFactory.createDataSource(prop);
+        } <span class="hljs-keyword">catch</span> (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Connection <span class="hljs-title">getConnection</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> SQLException </span>{
+        Connection connection = threadLocal.get();
+        <span class="hljs-keyword">if</span> (connection == <span class="hljs-keyword">null</span>) {
+            connection = dataSource.getConnection();
+            threadLocal.set(connection);
+        }
+        <span class="hljs-keyword">return</span> connection;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">releaseConnection</span><span class="hljs-params">()</span> </span>{
+        Connection connection = threadLocal.get();
+        <span class="hljs-keyword">if</span> (connection != <span class="hljs-keyword">null</span>) {
+            <span class="hljs-keyword">try</span> {
+                connection.close();
+            } <span class="hljs-keyword">catch</span> (SQLException e) {
+                e.printStackTrace();
+            } <span class="hljs-keyword">finally</span> {
+                threadLocal.remove();
+            }
+        }
+    }
+}
+</code></pre>
+<p>ThreadLocal&#x7528;&#x4E8E;&#x4FDD;&#x5B58;&#x67D0;&#x4E2A;&#x7EBF;&#x7A0B;&#x5171;&#x4EAB;&#x53D8;&#x91CF;&#xFF0C;&#x4E0D;&#x540C;&#x7EBF;&#x7A0B;&#x53EA;&#x80FD;&#x4ECE;&#x4E2D;get&#xFF0C;set&#xFF0C;remove&#x81EA;&#x5DF1;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x800C;&#x4E0D;&#x4F1A;&#x5F71;&#x54CD;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x7684;&#x53D8;&#x91CF;&#x3002;</p>
+<p>&#x4F7F;&#x7528;ThreadLocal&#x53EF;&#x4EE5;&#x4FDD;&#x8BC1;&#x5728;&#x540C;&#x4E00;&#x7EBF;&#x7A0B;&#x91CC;&#x7684;&#x53D8;&#x91CF;&#x552F;&#x4E00;&#xFF0C;&#x901A;&#x5E38;&#x7528;&#x6765;&#x5728;&#x5728;&#x591A;&#x7EBF;&#x7A0B;&#x4E2D;&#x7BA1;&#x7406;&#x5171;&#x4EAB;&#x6570;&#x636E;&#x5E93;&#x8FDE;&#x63A5;&#x3001;Session&#x7B49;&#x3002;</p>
+<p><img src="imgs/threadlocal.png" alt=""></p>
+<h3 id="2-basedaojava">2. BaseDAO.java</h3>
+<pre><code class="lang-java"><span class="hljs-keyword">package</span> com.atguigu.jdbc.utils;
+
+<span class="hljs-keyword">import</span> java.lang.reflect.Field;
+<span class="hljs-keyword">import</span> java.sql.Connection;
+<span class="hljs-keyword">import</span> java.sql.PreparedStatement;
+<span class="hljs-keyword">import</span> java.sql.ResultSet;
+<span class="hljs-keyword">import</span> java.sql.ResultSetMetaData;
+<span class="hljs-keyword">import</span> java.sql.SQLException;
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BaseDAO</span> </span>{
+    <span class="hljs-keyword">private</span> Connection conn;
+    {
+        <span class="hljs-keyword">try</span> {
+            conn = ConnectionTools.getConnection();
+        } <span class="hljs-keyword">catch</span> (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">int</span> <span class="hljs-title">update</span><span class="hljs-params">(String sql,Object... args)</span> <span class="hljs-keyword">throws</span> SQLException</span>{
+        PreparedStatement pst = conn.prepareStatement(sql);
+        <span class="hljs-keyword">if</span>(args!=<span class="hljs-keyword">null</span>  &amp;&amp; args.length&gt;<span class="hljs-number">0</span>){
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; args.length; i++) {
+                pst.setObject(i+<span class="hljs-number">1</span>, args[i]);
+            }
+        }
+
+        <span class="hljs-keyword">int</span> len = pst.executeUpdate();
+        pst.close();
+        <span class="hljs-keyword">return</span> len;
+    }
+
+    <span class="hljs-keyword">protected</span> &lt;T&gt; <span class="hljs-function">ArrayList&lt;T&gt; <span class="hljs-title">getList</span><span class="hljs-params">(Class&lt;T&gt; clazz,String sql,Object... args)</span> <span class="hljs-keyword">throws</span> Exception</span>{
+        PreparedStatement pst = conn.prepareStatement(sql);
+        <span class="hljs-keyword">if</span>(args!=<span class="hljs-keyword">null</span>  &amp;&amp; args.length&gt;<span class="hljs-number">0</span>){
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; args.length; i++) {
+                pst.setObject(i+<span class="hljs-number">1</span>, args[i]);
+            }
+        }
+        ResultSet rs = pst.executeQuery();
+
+        ArrayList&lt;T&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+
+        ResultSetMetaData metaData = rs.getMetaData();
+        <span class="hljs-keyword">int</span> count = metaData.getColumnCount();
+
+        <span class="hljs-keyword">while</span>(rs.next()){
+            T t  = clazz.newInstance();
+
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; count; i++) {
+                String fieldName = metaData.getColumnLabel(i+<span class="hljs-number">1</span>);
+                Field f = clazz.getDeclaredField(fieldName);
+                f.setAccessible(<span class="hljs-keyword">true</span>);
+                f.set(t, rs.getObject(i+<span class="hljs-number">1</span>));
+            }
+            list.add(t);
+        }
+        pst.close();
+        rs.close();
+        <span class="hljs-keyword">return</span> list;
+    }
+    <span class="hljs-keyword">protected</span> &lt;T&gt; <span class="hljs-function">T <span class="hljs-title">getBean</span><span class="hljs-params">(Class&lt;T&gt; clazz,String sql,Object... args)</span> <span class="hljs-keyword">throws</span> Exception</span>{
+        <span class="hljs-keyword">return</span> getList(clazz,sql,args).get(<span class="hljs-number">0</span>);
+    }
+}
+</code></pre>
+<h3 id="3-&#x5C01;&#x88C5;javabean">3. &#x5C01;&#x88C5;JavaBean</h3>
+<p><img src="imgs/javabean.png" alt=""></p>
+<h3 id="4-employeedaojava">4. EmployeeDAO.java</h3>
+<p>&#x5C01;&#x88C5;&#x4E00;&#x4E2A;EmployeeDAO.java&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x5728;&#x8FD9;&#x91CC;&#x5B9A;&#x4E49;&#x62BD;&#x8C61;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">package</span> com.atguigu.jdbc.dao;
+
+<span class="hljs-keyword">import</span> com.atguigu.jdbc.bean.Employee;
+
+<span class="hljs-keyword">import</span> java.sql.SQLException;
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">EmployeeDAO</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">addEmployee</span><span class="hljs-params">(Employee emp)</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">updateEmployee</span><span class="hljs-params">(Employee emp)</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">deleteByEid</span><span class="hljs-params">(<span class="hljs-keyword">int</span> eid)</span></span>;
+    <span class="hljs-function">Employee <span class="hljs-title">getByEid</span><span class="hljs-params">(<span class="hljs-keyword">int</span> eid)</span></span>;
+    <span class="hljs-function">ArrayList&lt;Employee&gt; <span class="hljs-title">getAll</span><span class="hljs-params">()</span></span>;
+}
+</code></pre>
+<h3 id="5-employeedaoimpljava">5. EmployeeDAOImpl.java</h3>
+<p>&#x5C01;&#x88C5;<code>EmployeeDAOImpl</code>&#x7C7B;&#xFF0C;&#x7EE7;&#x627F;&#x81EA;<code>BaseDAO</code>&#x540C;&#x65F6;&#x5B9E;&#x73B0;<code>EmployeeDAO</code>&#x63A5;&#x53E3;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">package</span> com.atguigu.test08.dao;
+
+<span class="hljs-keyword">import</span> java.sql.SQLException;
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+
+<span class="hljs-keyword">import</span> com.atguigu.bean.Employee;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EmployeeDAOImpl</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BaseDAO</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">EmployeeDAO</span> </span>{
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addEmployee</span><span class="hljs-params">(Employee emp)</span> </span>{
+        <span class="hljs-comment">//`ename`,`tel`,`gender`,`salary`,`commission_pct`,`birthday`,</span>
+        <span class="hljs-comment">//`hiredate`,`job_id`,`email`,`mid`,`address`,`native_place`,`did`</span>
+        String sql = <span class="hljs-string">&quot;insert into t_employee values(null,?,?,?,?,?,?,?,?,?,?,?,?,?)&quot;</span>;
+
+        <span class="hljs-keyword">try</span> {
+            update(sql, emp.getEname(),emp.getTel(),emp.getGender(),emp.getSalary(),emp.getCommissionPct(),
+                    emp.getBirthday(),emp.getHiredate(),emp.getJobId(),emp.getEmail(),emp.getMid(),emp.getAddress(),
+                    emp.getNativePlace(),emp.getDid());
+        } <span class="hljs-keyword">catch</span> (SQLException e) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(e);
+        }
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">updateEmployee</span><span class="hljs-params">(Employee emp)</span> </span>{
+        String sql = <span class="hljs-string">&quot;update t_employee set `ename`=?,`tel`=?,`gender`=?,`salary`=?,`commission_pct`=?,`birthday`=?,`hiredate`=?,`job_id`=?,`email`=?,`mid`=?,`address`=?,`native_place`=?,`did`=? where eid=?&quot;</span>;
+        <span class="hljs-keyword">try</span> {
+            update(sql, emp.getEname(),emp.getTel(),emp.getGender(),emp.getSalary(),emp.getCommissionPct(),
+                    emp.getBirthday(),emp.getHiredate(),emp.getJobId(),emp.getEmail(),emp.getMid(),emp.getAddress(),
+                    emp.getNativePlace(),emp.getDid(),emp.getEid());
+        } <span class="hljs-keyword">catch</span> (SQLException e) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(e);
+        }
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">deleteByEid</span><span class="hljs-params">(<span class="hljs-keyword">int</span> eid)</span> </span>{
+        String sql = <span class="hljs-string">&quot;delete from t_employee where eid=?&quot;</span>;
+        <span class="hljs-keyword">try</span> {
+            update(sql, eid);
+        } <span class="hljs-keyword">catch</span> (SQLException e) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(e);
+        }
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Employee <span class="hljs-title">getByEid</span><span class="hljs-params">(<span class="hljs-keyword">int</span> eid)</span> </span>{
+        <span class="hljs-comment">//&#x8FD9;&#x91CC;sql&#x4E2D;&#x901A;&#x8FC7;&#x53D6;&#x522B;&#x540D;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x6765;&#x6307;&#x5B9A;&#x5BF9;&#x5E94;&#x7684;Javabean&#x7684;&#x5C5E;&#x6027;&#x540D;</span>
+        String sql = <span class="hljs-string">&quot;select `eid`,`ename`,`tel`,`gender`,`salary`,`commission_pct` commissionPct ,`birthday`,`hiredate`,`job_id` jobId,`email`,`mid`,`address`,`native_place` nativePlace,`did` from t_employee where eid=?&quot;</span>;
+        Employee emp = <span class="hljs-keyword">null</span>;
+        <span class="hljs-keyword">try</span> {
+            emp = getBean(Employee.class, sql, eid);
+        } <span class="hljs-keyword">catch</span> (Exception e) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(e);
+        }    
+        <span class="hljs-keyword">return</span> emp;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> ArrayList&lt;Employee&gt; <span class="hljs-title">getAll</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">//&#x8FD9;&#x91CC;sql&#x4E2D;&#x901A;&#x8FC7;&#x53D6;&#x522B;&#x540D;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x6765;&#x6307;&#x5B9A;&#x5BF9;&#x5E94;&#x7684;Javabean&#x7684;&#x5C5E;&#x6027;&#x540D;</span>
+        String sql = <span class="hljs-string">&quot;select `eid`,`ename`,`tel`,`gender`,`salary`,`commission_pct` commissionPct ,`birthday`,`hiredate`,`job_id` jobId,`email`,`mid`,`address`,`native_place` nativePlace,`did` from t_employee&quot;</span>;
+        ArrayList&lt;Employee&gt;  list = <span class="hljs-keyword">new</span> ArrayList&lt;Employee&gt;();
+        <span class="hljs-keyword">try</span> {
+            list = getList(Employee.class, sql);
+        } <span class="hljs-keyword">catch</span> (Exception e) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(e);
+        }
+        <span class="hljs-keyword">return</span> list;
+    }
+}
+</code></pre>
+<footer class="page-footer"><span class="copyright">&#x5C1A;&#x7845;&#x8C37;@atguigu all right reserved</span><span class="footer-modification">&#x59DC;&#x4F1F;
+2021-10-07 21:13:06
+</span></footer>
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../chapter03/section04.html" class="navigation navigation-prev " aria-label="Previous page: 数据库连接池"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../chapter03/section06.html" class="navigation navigation-next " aria-label="Next page: Apache的dbutils介绍"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-hide-element/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-splitter/splitter.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-copy-code-button/toggle.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"hide-element":{"elements":[".gitbook-link"]},"favicon":"favicon.ico","tbfed-pagefooter":{"copyright":"尚硅谷@atguigu","modify_label":"姜伟","modify_format":"YYYY-MM-DD HH:mm:ss"},"splitter":{},"custom-favicon":{},"popup":{},"chapter-fold":{},"prism":{},"copy-code-button":{},"highlight":{},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+    </body>
+    <!-- End of book JavaSE -->
+</html>

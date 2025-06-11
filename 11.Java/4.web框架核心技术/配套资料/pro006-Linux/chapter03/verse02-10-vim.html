@@ -1,0 +1,230 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>verse02-10-vim</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px !important; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="mermaid"] svg, [lang="flow"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+
+
+:root { --side-bar-bg-color: #fafafa; --control-text-color: #777; }
+html { font-size: 16px; }
+body { font-family: "Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; color: rgb(51, 51, 51); line-height: 1.6; }
+#write { max-width: 860px; margin: 0px auto; padding: 30px 30px 100px; }
+#write > ul:first-child, #write > ol:first-child { margin-top: 30px; }
+a { color: rgb(65, 131, 196); }
+h1, h2, h3, h4, h5, h6 { position: relative; margin-top: 1rem; margin-bottom: 1rem; font-weight: bold; line-height: 1.4; cursor: text; }
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor { text-decoration: none; }
+h1 tt, h1 code { font-size: inherit; }
+h2 tt, h2 code { font-size: inherit; }
+h3 tt, h3 code { font-size: inherit; }
+h4 tt, h4 code { font-size: inherit; }
+h5 tt, h5 code { font-size: inherit; }
+h6 tt, h6 code { font-size: inherit; }
+h1 { padding-bottom: 0.3em; font-size: 2.25em; line-height: 1.2; border-bottom: 1px solid rgb(238, 238, 238); }
+h2 { padding-bottom: 0.3em; font-size: 1.75em; line-height: 1.225; border-bottom: 1px solid rgb(238, 238, 238); }
+h3 { font-size: 1.5em; line-height: 1.43; }
+h4 { font-size: 1.25em; }
+h5 { font-size: 1em; }
+h6 { font-size: 1em; color: rgb(119, 119, 119); }
+p, blockquote, ul, ol, dl, table { margin: 0.8em 0px; }
+li > ol, li > ul { margin: 0px; }
+hr { height: 2px; padding: 0px; margin: 16px 0px; background-color: rgb(231, 231, 231); border: 0px none; overflow: hidden; box-sizing: content-box; }
+li p.first { display: inline-block; }
+ul, ol { padding-left: 30px; }
+ul:first-child, ol:first-child { margin-top: 0px; }
+ul:last-child, ol:last-child { margin-bottom: 0px; }
+blockquote { border-left: 4px solid rgb(223, 226, 229); padding: 0px 15px; color: rgb(119, 119, 119); }
+blockquote blockquote { padding-right: 0px; }
+table { padding: 0px; word-break: initial; }
+table tr { border-top: 1px solid rgb(223, 226, 229); margin: 0px; padding: 0px; }
+table tr:nth-child(2n), thead { background-color: rgb(248, 248, 248); }
+table tr th { font-weight: bold; border-width: 1px 1px 0px; border-top-style: solid; border-right-style: solid; border-left-style: solid; border-top-color: rgb(223, 226, 229); border-right-color: rgb(223, 226, 229); border-left-color: rgb(223, 226, 229); border-image: initial; border-bottom-style: initial; border-bottom-color: initial; margin: 0px; padding: 6px 13px; }
+table tr td { border: 1px solid rgb(223, 226, 229); margin: 0px; padding: 6px 13px; }
+table tr th:first-child, table tr td:first-child { margin-top: 0px; }
+table tr th:last-child, table tr td:last-child { margin-bottom: 0px; }
+.CodeMirror-lines { padding-left: 4px; }
+.code-tooltip { box-shadow: rgba(0, 28, 36, 0.3) 0px 1px 1px 0px; border-top: 1px solid rgb(238, 242, 242); }
+.md-fences, code, tt { border: 1px solid rgb(231, 234, 237); background-color: rgb(248, 248, 248); border-radius: 3px; padding: 2px 4px 0px; font-size: 0.9em; }
+code { background-color: rgb(243, 244, 244); padding: 0px 2px; }
+.md-fences { margin-bottom: 15px; margin-top: 15px; padding-top: 8px; padding-bottom: 6px; }
+.md-task-list-item > input { margin-left: -1.3em; }
+@media print {
+  html { font-size: 13px; }
+  table, pre { break-inside: avoid; }
+  pre { overflow-wrap: break-word; }
+}
+.md-fences { background-color: rgb(248, 248, 248); }
+#write pre.md-meta-block { padding: 1rem; font-size: 85%; line-height: 1.45; background-color: rgb(247, 247, 247); border: 0px; border-radius: 3px; color: rgb(119, 119, 119); margin-top: 0px !important; }
+.mathjax-block > .code-tooltip { bottom: 0.375rem; }
+.md-mathjax-midline { background: rgb(250, 250, 250); }
+#write > h3.md-focus::before { left: -1.5625rem; top: 0.375rem; }
+#write > h4.md-focus::before { left: -1.5625rem; top: 0.285714rem; }
+#write > h5.md-focus::before { left: -1.5625rem; top: 0.285714rem; }
+#write > h6.md-focus::before { left: -1.5625rem; top: 0.285714rem; }
+.md-image > .md-meta { border-radius: 3px; padding: 2px 0px 0px 4px; font-size: 0.9em; color: inherit; }
+.md-tag { color: rgb(167, 167, 167); opacity: 1; }
+.md-toc { margin-top: 20px; padding-bottom: 20px; }
+.sidebar-tabs { border-bottom: none; }
+#typora-quick-open { border: 1px solid rgb(221, 221, 221); background-color: rgb(248, 248, 248); }
+#typora-quick-open-item { background-color: rgb(250, 250, 250); border-color: rgb(254, 254, 254) rgb(229, 229, 229) rgb(229, 229, 229) rgb(238, 238, 238); border-style: solid; border-width: 1px; }
+.on-focus-mode blockquote { border-left-color: rgba(85, 85, 85, 0.12); }
+header, .context-menu, .megamenu-content, footer { font-family: "Segoe UI", Arial, sans-serif; }
+.file-node-content:hover .file-node-icon, .file-node-content:hover .file-node-open-state { visibility: visible; }
+.mac-seamless-mode #typora-sidebar { background-color: var(--side-bar-bg-color); }
+.md-lang { color: rgb(180, 101, 77); }
+.html-for-mac .context-menu { --item-hover-bg-color: #E6F0FE; }
+#md-notification .btn { border: 0px; }
+.dropdown-menu .divider { border-color: rgb(229, 229, 229); }
+.ty-preferences .window-content { background-color: rgb(250, 250, 250); }
+.ty-preferences .nav-group-item.active { color: white; background: rgb(153, 153, 153); }
+
+
+</style>
+</head>
+<body class='typora-export os-windows' >
+<div  id='write'  class = 'is-node'><p><span>[[toc]]</span></p><h1><a name="第二节-文件和目录相关命令vim" class="md-header-anchor"></a><span>第二节 文件和目录相关命令：vim</span></h1><p>&nbsp;</p><h2><a name="一简介" class="md-header-anchor"></a><span>一、简介</span></h2><p><span>命令：vim</span></p><p><span>作用：在</span><span style="color:blue;font-weight:bold;"><span>命令行环境</span></span><span>下编辑文本文件</span></p><p><span>提示：在命令行模式下</span><span style="color:blue;font-weight:bold;"><span>没有鼠标</span></span><span>，所以刚开始使用的时候会觉得非常不习惯。但是慢慢的熟练之后你会发现，不需要鼠标全部用键盘就可以操作效率很高。</span></p><p>&nbsp;</p><h2><a name="二三种模式" class="md-header-anchor"></a><span>二、三种模式</span></h2><p><img src="./images/img004.png" referrerpolicy="no-referrer" alt="./images"></p><p>&nbsp;</p><p><span>一般模式：通过按键控制VIM工作</span></p><p><span>编辑模式：可以自由输入</span></p><p><span>指令模式：通过执行指令完成一些特殊操作</span></p><p>&nbsp;</p><h2><a name="三基本操作" class="md-header-anchor"></a><span>三、基本操作</span></h2><h3><a name="1打开一个文件" class="md-header-anchor"></a><span>1、打开一个文件</span></h3><p><span>[root@localhost ~]# vim content.txt</span></p><p><span>即使这个文件不存在也没关系，vim知道我们打算新建一个文件。打开后的效果是：</span></p><p><img src="./images/img005.png" referrerpolicy="no-referrer" alt="./images"></p><p>&nbsp;</p><h3><a name="2进入编辑模式" class="md-header-anchor"></a><span>2、进入编辑模式</span></h3><p><span>进入编辑模式有很多种方法，现在我们先使用其中一种方法：按一下</span><span style="color:blue;font-size:25px;font-family:consolas;"><span>i</span></span><span>键。</span></p><p><img src="./images/img006.png" referrerpolicy="no-referrer" alt="./images"></p><p>&nbsp;</p><p><span>按键的时候屏幕上是不显示“</span><span style="color:blue;font-size:25px;font-family:consolas;"><span>i</span></span><span>”这个字母的，这个需要注意。</span></p><p><span>然后可以随意输入一些内容。</span></p><p>&nbsp;</p><p><img src="./images/img007.png" referrerpolicy="no-referrer" alt="./images"></p><p>&nbsp;</p><p><span>然后再</span><span style="color:blue;font-weight:bold;"><span>按Esc键回到一般模式</span></span><span>。</span></p><p>&nbsp;</p><h3><a name="3显示行号" class="md-header-anchor"></a><span>3、显示行号</span></h3><p><span>接着上一步继续，在回到一般模式后，输入</span><span style="color:blue;font-weight:bold;"><span>英文冒号</span></span><span>。我们会看到光标移动到了窗口的底部：</span></p><p><img src="./images/img008.png" referrerpolicy="no-referrer" alt="./images"></p><p><span>然后输入set nu回车就可以显示行号了。</span></p><p>&nbsp;</p><p><img src="./images/img009.png" referrerpolicy="no-referrer" alt="./images"></p><p><img src="./images/img010.png" referrerpolicy="no-referrer" alt="./images"></p><p><span>这时我们其实就使用了一个</span><span style="color:blue;font-weight:bold;"><span>指令</span></span><span>。</span></p><p>&nbsp;</p><h3><a name="4保存已修改的内容" class="md-header-anchor"></a><span>4、保存已修改的内容</span></h3><p><span>当:set nu这个指令执行完成后，vim就又回到了</span><span style="color:blue;font-weight:bold;"><span>一般模式</span></span><span>。此时我们使用</span><span style="color:blue;font-weight:bold;"><span>:w指令</span></span><span>就可以保存文件。</span></p><p><img src="./images/img011.png" referrerpolicy="no-referrer" alt="./images"></p><p><img src="./images/img012.png" referrerpolicy="no-referrer" alt="./images"></p><p>&nbsp;</p><h3><a name="5退出" class="md-header-anchor"></a><span>5、退出</span></h3><p><span>使用</span><span style="color:blue;font-size:25px;font-family:consolas;"><span>:q</span></span><span>指令就可以退出vim了</span></p><p><img src="./images/img013.png" referrerpolicy="no-referrer" alt="./images"></p><p>&nbsp;</p><h3><a name="6保存退出" class="md-header-anchor"></a><span>6、保存退出</span></h3><p><span>:w是保存，:q是退出，</span><span style="color:blue;font-size:25px;font-family:consolas;"><span>:wq</span></span><span>就是保存退出</span></p><p><img src="./images/img014.png" referrerpolicy="no-referrer" alt="./images"></p><p>&nbsp;</p><h3><a name="7不保存退出" class="md-header-anchor"></a><span>7、不保存退出</span></h3><p><span>当我们退出vim时，如果有部分修改还没有保存，那么会看到下面的提示：</span></p><p><img src="./images/img015.png" referrerpolicy="no-referrer" alt="./images"></p><p><span>当我们想要放弃对文件的修改，不保存直接退出就使用</span><span style="color:blue;font-size:25px;font-family:consolas;"><span>:q!</span></span></p><p><img src="./images/img016.png" referrerpolicy="no-referrer" alt="./images"></p><p>&nbsp;</p><h2><a name="四看" class="md-header-anchor"></a><span>四、看</span></h2><h3><a name="1上下左右移动光标" class="md-header-anchor"></a><span>1、上下左右移动光标</span></h3><h4><a name="①方法一" class="md-header-anchor"></a><span>①方法一</span></h4><p><span>很容易上手的操作方式，但是距离基准键位较远，熟练使用之后敲击键盘的速度大幅度提升，要移动这么远的举例还是非常不便的。</span></p><p><img src="./images/img017.png" referrerpolicy="no-referrer" alt="./images"></p><p>&nbsp;</p><h4><a name="②方法二" class="md-header-anchor"></a><span>②方法二</span></h4><p><span>就在基准键位上，非常方便。</span></p><p><img src="./images/img018.png" referrerpolicy="no-referrer" alt="./images"></p><p>&nbsp;</p><h3><a name="2前往指定行" class="md-header-anchor"></a><span>2、前往指定行</span></h3><h4><a name="①第一行" class="md-header-anchor"></a><span>①第一行</span></h4><p><span>输入gg，将光标定位到第一行开头的位置。此时屏幕上并不会显示你输入了什么，需要你自己心里面知道。</span></p><p><img src="./images/img019.png" referrerpolicy="no-referrer" alt="./images"></p><p>&nbsp;</p><h4><a name="②最后一行" class="md-header-anchor"></a><span>②最后一行</span></h4><p><span>输入G，将光标定位到最后一行开头的位置。</span></p><p><img src="./images/img020.png" referrerpolicy="no-referrer" alt="./images"></p><p>&nbsp;</p><h4><a name="③指定行号" class="md-header-anchor"></a><span>③指定行号</span></h4><p><span>假设我们要去第12行，那么依次输入“1”、“2”、“G”即可。这些也不会在屏幕上的任何地方显示，所以还是要我们自己心里清楚。</span></p><p><img src="./images/img021.png" referrerpolicy="no-referrer" alt="./images"></p><p>&nbsp;</p><h2><a name="五改" class="md-header-anchor"></a><span>五、改</span></h2><p><span>这里我们说的是在一般模式下通过按键来编辑文件，并不是进入编辑模式。</span></p><figure><table><thead><tr><th><span>按键</span></th><th><span>效果</span></th></tr></thead><tbody><tr><td><span style="color:blue;font-size:25px;font-family:consolas;"><span>dd</span></span></td><td><span>删除光标所在的行</span></td></tr><tr><td><span style="color:blue;font-size:25px;font-family:consolas;"><span>d5d</span></span></td><td><span>从光标所在行开始，向下连续删除5行（包括光标所在行）</span></td></tr><tr><td><span style="color:blue;font-size:25px;font-family:consolas;"><span>u</span></span></td><td><span>撤销刚才的操作</span></td></tr><tr><td><span style="color:blue;font-size:25px;font-family:consolas;"><span>Ctrl+r</span></span></td><td><span>重做刚才撤销的操作</span></td></tr><tr><td><span style="color:blue;font-size:25px;font-family:consolas;"><span>yy</span></span></td><td><span>复制光标所在的行</span></td></tr><tr><td><span style="color:blue;font-size:25px;font-family:consolas;"><span>p</span></span></td><td><span>将当前复制的行粘贴到光标所在位置的下一行</span></td></tr><tr><td><span style="color:blue;font-size:25px;font-family:consolas;"><span>y3y</span></span></td><td><span>从光标所在行开始，向下连续复制5行（包括光标所在行）</span></td></tr><tr><td><span style="color:blue;font-size:25px;font-family:consolas;"><span>r</span></span></td><td><span>替换光标所在位置的一个字符</span><br><span>第一步：按一下r键</span><br><span>第二步：输入新的字符</span></td></tr></tbody></table></figure><p>&nbsp;</p><h2><a name="六编" class="md-header-anchor"></a><span>六、编</span></h2><p><span>这次我们要看看有哪些方法可以进入编辑模式</span></p><figure><table><thead><tr><th><span>按键</span></th><th><span>大小写</span><br><span>说明</span></th><th><span>光标动作</span></th></tr></thead><tbody><tr><td><span style="color:blue;font-size:25px;font-family:consolas;"><span>i</span></span></td><td><span>小写</span></td><td><span>不动，就在</span><span style="color:blue;font-weight:bold;"><span>当前位置</span></span><span>，开始输入</span></td></tr><tr><td><span style="color:blue;font-size:25px;font-family:consolas;"><span>I</span></span></td><td><span>大写</span></td><td><span>移动到</span><span style="color:blue;font-weight:bold;"><span>行的开头</span></span><span>，开始输入</span></td></tr><tr><td><span style="color:blue;font-size:25px;font-family:consolas;"><span>a</span></span></td><td><span>小写</span></td><td><span>光标</span><span style="color:blue;font-weight:bold;"><span>向后移动一格</span></span><span>，然后开始输入</span></td></tr><tr><td><span style="color:blue;font-size:25px;font-family:consolas;"><span>A</span></span></td><td><span>大写</span></td><td><span>光标移动到</span><span style="color:blue;font-weight:bold;"><span>行的末尾</span></span><span>，然后开始输入</span></td></tr><tr><td><span style="color:blue;font-size:25px;font-family:consolas;"><span>o</span></span></td><td><span>小写</span></td><td><span>先在光标所在行的</span><span style="color:blue;font-weight:bold;"><span>下面插入空行</span></span><br><span>然后把光标移动到空行的开头，再开始输入</span></td></tr></tbody></table></figure><p>&nbsp;</p><h2><a name="七搜" class="md-header-anchor"></a><span>七、搜</span></h2><h3><a name="1初始状态" class="md-header-anchor"></a><span>1、初始状态</span></h3><p><img src="./images/img022.png" referrerpolicy="no-referrer" alt="./images"></p><p>&nbsp;</p><h3><a name="2进入指令模式" class="md-header-anchor"></a><span>2、进入指令模式</span></h3><p><span>输入“</span><span style="color:blue;font-size:25px;font-family:consolas;"><span>/</span></span><span>”，进入专门用于搜索关键词的指令模式</span></p><p><img src="./images/img023.png" referrerpolicy="no-referrer" alt="./images"></p><p>&nbsp;</p><h3><a name="3输入关键词" class="md-header-anchor"></a><span>3、输入关键词</span></h3><p><img src="./images/img024.png" referrerpolicy="no-referrer" alt="./images"></p><p>&nbsp;</p><h3><a name="4回车执行搜索" class="md-header-anchor"></a><span>4、回车执行搜索</span></h3><p><span>关键词匹配到的内容会被高亮显示</span></p><p><img src="./images/img025.png" referrerpolicy="no-referrer" alt="./images"></p><p>&nbsp;</p><h3><a name="5遍历匹配内容" class="md-header-anchor"></a><span>5、遍历匹配内容</span></h3><p><span>在匹配到搜索结果后，可以逐个遍历各个匹配内容：</span></p><ul><li><span>输入</span><span style="color:blue;font-size:25px;font-family:consolas;"><span>n</span></span><span>向下找</span></li><li><span>输入</span><span style="color:blue;font-size:25px;font-family:consolas;"><span>N</span></span><span>向上找</span></li></ul><p>&nbsp;</p><h3><a name="6取消高亮显示" class="md-header-anchor"></a><span>6、取消高亮显示</span></h3><p><span>使用</span><span style="color:blue;font-size:25px;font-family:consolas;"><span>:noh</span></span><span>指令即可取消高亮</span></p><p><img src="./images/img026.png" referrerpolicy="no-referrer" alt="./images"></p><p><span>回车执行后的效果如下图所示：</span></p><p><img src="./images/img027.png" referrerpolicy="no-referrer" alt="./images"></p><p>&nbsp;</p><h2><a name="八替" class="md-header-anchor"></a><span>八、替</span></h2><h3><a name="1新建文件" class="md-header-anchor"></a><span>1、新建文件</span></h3><p><span>::: tip</span></p><p><span>Oh,hello tom!Do you think this is a good time for me to say hello to Lily?</span></p><p><span>Oh,hello tom!Do you think this is a good time for me to say hello to Lily?</span></p><p><span>Oh,hello tom!Do you think this is a good time for me to say hello to Lily?</span></p><p><span>Oh,hello tom!Do you think this is a good time for me to say hello to Lily?</span></p><p><span>Oh,hello tom!Do you think this is a good time for me to say hello to Lily?</span></p><p><span>Oh,hello tom!Do you think this is a good time for me to say hello to Lily?</span></p><p><span>Oh,hello tom!Do you think this is a good time for me to say hello to Lily?</span></p><p><span>Oh,hello tom!Do you think this is a good time for me to say hello to Lily?</span></p><p><span>Oh,hello tom!Do you think this is a good time for me to say hello to Lily?</span></p><p><span>:::</span></p><p>&nbsp;</p><h3><a name="2执行替换" class="md-header-anchor"></a><span>2、执行替换</span></h3><p><span>将to替换为TO</span></p><p><img src="./images/img028.png" referrerpolicy="no-referrer" alt="./images"></p><p>&nbsp;</p><p><span>关键词替换指令格式解析：</span></p><p><img src="./images/img029.png" referrerpolicy="no-referrer" alt="./images"></p><p>&nbsp;</p><h3><a name="3效果" class="md-header-anchor"></a><span>3、效果</span></h3><p><img src="./images/img030.png" referrerpolicy="no-referrer" alt="./images"></p><p><span>这时我们看到每一行只有第一个匹配的内容被替换了，后面的没有被替换。这是因为对正则表达式来说，它是以行为单位查找匹配的内容。每一行只要找到第一个匹配那么就可以判断这一行就是匹配的，没有必要继续向后查找了。如果我们需要将一行中的每一个匹配都替换，可以在指令后加</span><span style="color:blue;font-size:25px;font-family:consolas;"><span>/g</span></span></p><p>&nbsp;</p><h3><a name="4重新替换" class="md-header-anchor"></a><span>4、重新替换</span></h3><p><span>先按u键撤销刚才的替换</span></p><p><img src="./images/img031.png" referrerpolicy="no-referrer" alt="./images"></p><p>&nbsp;</p><p><span>重新运行替换指令：</span></p><p><img src="./images/img032.png" referrerpolicy="no-referrer" alt="./images"></p><p>&nbsp;</p><p><span>效果：</span></p><p><img src="./images/img033.png" referrerpolicy="no-referrer" alt="./images"></p><p>&nbsp;</p><h2><a name="九常见问题" class="md-header-anchor"></a><span>九、常见问题</span></h2><h3><a name="1另一种形式的指令模式" class="md-header-anchor"></a><span>1、另一种形式的指令模式</span></h3><p><img src="./images/img076.png" referrerpolicy="no-referrer" alt="./images"></p><p>&nbsp;</p><h4><a name="①出现的原因" class="md-header-anchor"></a><span>①出现的原因</span></h4><p><span>想进入指令模式时本该先输入冒号，再输入字母。而如果先输入了字母再输入冒号就会看到上面显示的界面。这其实也是正常的指令模式，上面列出了我们执行过的指令，也可以输入新指令。</span></p><p>&nbsp;</p><h4><a name="②输入新指令" class="md-header-anchor"></a><span>②输入新指令</span></h4><p><span>按照进入编辑模式的方式，按对应的键即可，比如按一下</span><span style="color:blue;font-size:25px;font-family:consolas;"><span>i</span></span><span>键，下面显示“——插入——”，此时就可以在光标位置输入新的指令了。</span></p><p><img src="./images/img077.png" referrerpolicy="no-referrer" alt="./images"></p><p><span>输入新指令后回车执行。</span></p><p>&nbsp;</p><h4><a name="③选择历史指令" class="md-header-anchor"></a><span>③选择历史指令</span></h4><p><span>按上、下键即可在指令历史中选择一个具体指令。</span></p><p><img src="./images/img078.png" referrerpolicy="no-referrer" alt="./images"></p><p>&nbsp;</p><h4><a name="④什么都不做直接离开" class="md-header-anchor"></a><span>④什么都不做直接离开</span></h4><p><span>直接回车即可。</span></p><p>&nbsp;</p><h3><a name="2提示存在交换文件" class="md-header-anchor"></a><span>2、提示存在交换文件</span></h3><p><img src="./images/img079.png" referrerpolicy="no-referrer" alt="./images"></p><p>&nbsp;</p><h4><a name="①产生原因" class="md-header-anchor"></a><span>①产生原因</span></h4><p><span>vim在打开一个文件的时候会同时创建一个临时文件，命名方式是“.原文件名.swp”，这就是所谓的</span><span style="color:blue;font-weight:bold;"><span>交换文件</span></span><span>。而当vim正常退出时，这个交换文件会被删除。所以如果正常操作我们是看不到这个提示界面的。</span></p><p><span>而之所以会出现上面的提示，是因为当前的vim命令在创建新的交换文件之前就已经检测到了</span><span style="color:blue;font-weight:bold;"><span>已存在的交换文件</span></span><span>。</span></p><p><span>再往前推理一步，为什么会有交换文件残留？</span></p><ul><li><span>可能原因1：其他窗口正在使用vim打开同一个文件</span></li><li><span>可能原因2：非正常关机等原因导致vim没有正常退出</span></li></ul><p>&nbsp;</p><h4><a name="②解决办法" class="md-header-anchor"></a><span>②解决办法</span></h4><p><span>先根据最下面的提示输入</span><span style="color:blue;font-size:25px;font-family:consolas;"><span>Q</span></span><span>退出，然后检查是否在其他窗口已经用vim打开了这个文件：</span></p><ul><li><span>是：继续在这个vim中编辑文件。</span></li><li><span>否：删除交换文件，重新编辑。</span></li></ul><p>&nbsp;</p><h3><a name="3屏幕被锁" class="md-header-anchor"></a><span>3、屏幕被锁</span></h3><p><span>在Windows环境下大家已经习惯了使用Ctrl+s保存文档，但是在Linux环境下Ctrl+s是锁屏。如果是因为Ctrl+s锁屏那么可以使用</span><span style="color:blue;font-size:25px;font-family:consolas;"><span>Ctrl+q</span></span><span>解锁，然后继续操作。</span></p><p>&nbsp;</p><p><a href='verse02-09-rm.html'><span>上一条</span></a><span> </span><a href='verse02-00-index.html'><span>回目录</span></a><span> </span><a href='verse02-11-cat.html'><span>下一条</span></a></p></div>
+</body>
+</html>

@@ -1,0 +1,721 @@
+GET _search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+GET _analyze
+{
+  "text": "尚硅谷碉堡了，蓝瘦香菇,很牛逼",
+  "analyzer": "ik_max_word"
+}
+
+GET /_cat/indices?v
+
+PUT /atguigu
+{
+  "settings": {
+    "number_of_shards": 2,
+    "number_of_replicas": 2
+  }
+}
+
+GET /atguigu2
+
+DELETE /atguigu
+
+PUT atguigu/_mapping/goods
+{
+  "properties": {
+    "title": {
+      "type": "text",
+      "index": true, 
+      "analyzer": "ik_max_word"
+    },
+    "images": {
+      "type": "keyword",
+      "index": "false"
+    },
+    "price": {
+      "type": "long"
+    }
+  }
+}
+
+GET /atguigu/_mapping
+
+POST /atguigu/goods
+{
+  "title": "华为手机",
+  "images": "http://image.jd.com/12479122.jpg",
+  "price": 4288
+}
+
+POST /atguigu/goods/1
+{
+  "title": "华为电视",
+  "images": "http://image.jd.com/12479122.jpg",
+  "price": 5288
+}
+
+POST /atguigu/goods/2
+{
+    "title":"小米手机",
+    "images":"http://image.jd.com/12479122.jpg",
+    "price":2899,
+    "stock": 200,
+    "saleable":true,
+    "attr": {
+        "category": "手机",
+        "brand": "小米"
+    }
+}
+
+POST /atguigu/goods/1/_update
+{
+  "doc":{
+    "price": 5388
+  }
+}
+
+DELETE /atguigu/goods/pzoXK24B3y_Sh6JpFGwE
+
+GET /atguigu/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+GET /atguigu/goods/2
+
+POST /atguigu/goods/_bulk
+{"index":{"_id":1}}
+{ "title":"小米手机", "images":"http://image.jd.com/12479122.jpg", "price":1999, "stock": 200, "attr": { "category": "手机", "brand": "小米" } }
+{"index":{"_id":2}}
+{"title":"超米手机", "images":"http://image.jd.com/12479122.jpg", "price":2999, "stock": 300, "attr": { "category": "手机", "brand": "小米" } }
+{"index":{"_id":3}}
+{ "title":"小米电视", "images":"http://image.jd.com/12479122.jpg", "price":3999, "stock": 400, "attr": { "category": "电视", "brand": "小米" } }
+{"index":{"_id":4}}
+{ "title":"小米笔记本", "images":"http://image.jd.com/12479122.jpg", "price":4999, "stock": 200, "attr": { "category": "笔记本", "brand": "小米" } }
+{"index":{"_id":5}}
+{ "title":"华为手机", "images":"http://image.jd.com/12479122.jpg", "price":3999, "stock": 400, "attr": { "category": "手机", "brand": "华为" } }
+{"index":{"_id":6}}
+{ "title":"华为笔记本", "images":"http://image.jd.com/12479122.jpg", "price":5999, "stock": 200, "attr": { "category": "笔记本", "brand": "华为" } }
+{"index":{"_id":7}}
+{ "title":"荣耀手机", "images":"http://image.jd.com/12479122.jpg", "price":2999, "stock": 300, "attr": { "category": "手机", "brand": "华为" } }
+{"index":{"_id":8}}
+{ "title":"oppo手机", "images":"http://image.jd.com/12479122.jpg", "price":2799, "stock": 400, "attr": { "category": "手机", "brand": "oppo" } }
+{"index":{"_id":9}}
+{ "title":"vivo手机", "images":"http://image.jd.com/12479122.jpg", "price":2699, "stock": 300, "attr": { "category": "手机", "brand": "vivo" } }
+{"index":{"_id":10}}
+{ "title":"华为nova手机", "images":"http://image.jd.com/12479122.jpg", "price":2999, "stock": 300, "attr": { "category": "手机", "brand": "华为" } }
+
+GET /atguigu/_search
+{
+  "query": {
+    "match": {
+      "title": {
+        "query": "小米手",
+        "operator": "or"
+      }
+    }
+  }
+}
+
+GET /atguigu/_search
+{
+  "query": {
+    "match": {
+      "attr.brand.keyword": "小米"
+    }
+  }
+}
+
+GET /atguigu/_search
+{
+  "query": {
+    "match_phrase": {
+      "title": "小米手"
+    }
+  }
+}
+
+GET /atguigu/_search
+{
+  "query": {
+    "multi_match": {
+      "query": "华为",
+      "fields": ["title", "attr.brand.keyword"]
+    }
+  }
+}
+
+GET /atguigu/_search
+{
+  "query": {
+    "term": {
+      "title": {
+        "value": "小米"
+      }
+    }
+  }
+}
+
+GET /atguigu/_search
+{
+  "query": {
+    "terms": {
+      "price": [
+        "3999",
+        "4999"
+      ]
+    }
+  }
+}
+
+GET /atguigu/_search
+{
+  "query": {
+    "range": {
+      "price": {
+        "gte": 1999,
+        "lte": 3999
+      }
+    }
+  }
+}
+
+GET /atguigu/_search
+{
+  "query": {
+    "fuzzy": {
+      "title": {
+        "value": "eppe",
+        "fuzziness": 2
+      }
+    }
+  }
+}
+
+GET /atguigu/_search
+{
+  "query": {
+    "bool": {
+      "should": [
+        {
+          "range": {
+            "price": {
+              "gte": 1999,
+              "lte": 3999
+            }
+          }
+        },{
+          "range": {
+            "price": {
+              "gte": 2699,
+              "lte": 5999
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+GET /atguigu/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "title": "手机"
+          }
+        }
+      ],
+      "filter": {
+        "range": {
+          "price": {
+            "gte": 1999,
+            "lte": 2999
+          }
+        }
+      }
+    }
+  },
+  "sort": [
+    {
+      "price": {
+        "order": "desc"
+      }
+    },{
+      "_score": "desc"
+    }
+  ],
+  "from": 2,
+  "size": 2,
+  "highlight": {
+    "fields": {"title":{}},
+    "pre_tags": "<em>",
+    "post_tags": "</em>"
+  },
+  "_source": {
+    "excludes": ["price", "stock"]
+  }
+}
+
+GET /atguigu/_search
+{
+  "size": 0, 
+  "aggs": {
+    "brands": {
+      "terms": {
+        "field": "attr.brand.keyword"
+      },
+      "aggs": {
+        "price_avg": {
+          "avg": {
+            "field": "price"
+          }
+        },
+        "categories": {
+          "terms": {
+            "field": "attr.category.keyword"
+          }
+        }
+      }
+    }
+  }
+}
+
+
+GET /atguigu/_search
+
+GET /user/_search
+
+
+PUT /goods
+{
+  "mappings" : {
+    "info" : {
+      "properties" : {
+        "attrValueList" : {
+          "type": "nested",
+          "properties" : {
+            "name" : {
+              "type" : "keyword"
+            },
+            "productAttributeId" : {
+              "type" : "long"
+            },
+            "value" : {
+              "type" : "keyword"
+            }
+          }
+        },
+        "brandId" : {
+          "type" : "long"
+        },
+        "brandName" : {
+          "type" : "keyword"
+        },
+        "id" : {
+          "type" : "long"
+        },
+        "name" : {
+          "type" : "text",
+          "analyzer": "ik_max_word"
+        },
+        "pic" : {
+          "type" : "keyword"
+        },
+        "price" : {
+          "type" : "long"
+        },
+        "productCategoryId" : {
+          "type" : "long"
+        },
+        "productCategoryName" : {
+          "type" : "keyword"
+        },
+        "sale" : {
+          "type" : "long"
+        },
+        "sort" : {
+          "type" : "long"
+        }
+      }
+    }
+  }
+}
+
+GET /goods/_mapping
+
+POST /atguigu2/goods/2
+{
+    "title":"华为手机",
+    "images":"http://image.jd.com/12479122.jpg",
+    "price":3899,
+    "stock": 300,
+    "saleable":true,
+    "attr": [{
+        "attrId": 20,
+        "name": "电池",
+        "value": "5000"
+    },{
+      "attrId": 30,
+      "name": "屏幕",
+      "value": "19:9"
+    }
+    ]
+}
+
+GET /atguigu2/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "term": {
+            "attr.attrId": {
+              "value": "20"
+            }
+          }
+        },{
+          "term": {
+            "attr.value.keyword": {
+              "value": "16:9"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+GET /goods/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "name": {
+              "query": "手机",
+              "operator": "and"
+            }
+          }
+        }
+      ],
+      "filter": [
+        {
+          "terms": {
+            "brandId": [
+              "5"
+            ]
+          }
+        },
+        {
+          "terms": {
+            "productCategoryId": [
+              "225"
+            ]
+          }
+        },
+        {
+          "nested": {
+            "path": "attrValueList", 
+            "query": {
+              "bool": {
+                "must": [ 
+                  {
+                    "term": {
+                      "attrValueList.productAttributeId": 25
+                    }
+                  },
+                  {
+                    "terms": {
+                      "attrValueList.value": ["3324"]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "nested": {
+            "path": "attrValueList", 
+            "query": {
+              "bool": {
+                "must": [ 
+                  {
+                    "term": {
+                      "attrValueList.productAttributeId": 33
+                    }
+                  },
+                  {
+                    "terms": {
+                      "attrValueList.value": ["3000"]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "from": 10,
+  "size": 10,
+  "sort": [
+    {
+      "price": {
+        "order": "desc"
+      }
+    }
+  ],
+  "highlight": {
+    "fields": {"name":{}},
+    "pre_tags": "<font color='red'>",
+    "post_tags": "</font>"
+  },
+  "aggs": {
+    "brandAgg": {
+      "terms": {
+        "field": "brandId"
+      },
+      "aggs": {
+        "brandNameAgg": {
+          "terms": {
+            "field": "brandName"
+          }
+        }
+      }
+    },
+    "categoryAgg": {
+      "terms": {
+        "field": "productCategoryId"
+      },
+      "aggs": {
+        "categoryNameAgg": {
+          "terms": {
+            "field": "productCategoryName"
+          }
+        }
+      }
+    },
+    "attrAgg": {
+      "nested": {
+        "path": "attrValueList"
+      },
+      "aggs": {
+        "attrIdAgg": {
+          "terms": {
+            "field": "attrValueList.productAttributeId"
+          },
+          "aggs": {
+            "attrNameAgg": {
+              "terms": {
+                "field": "attrValueList.name"
+              }
+            },
+            "attrValueAgg": {
+              "terms": {
+                "field": "attrValueList.value"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+GET /goods/_search
+{
+  "from": 12,
+  "size": 12,
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "name": {
+              "query": "手机",
+              "operator": "AND",
+              "prefix_length": 0,
+              "max_expansions": 50,
+              "fuzzy_transpositions": true,
+              "lenient": false,
+              "zero_terms_query": "NONE",
+              "auto_generate_synonyms_phrase_query": true,
+              "boost": 1
+            }
+          }
+        }
+      ],
+      "filter": [
+        {
+          "terms": {
+            "brandId": [
+              "225"
+            ],
+            "boost": 1
+          }
+        },
+        {
+          "terms": {
+            "productCategoryId": [
+              "23"
+            ],
+            "boost": 1
+          }
+        },
+        {
+          "nested": {
+            "query": {
+              "bool": {
+                "must": [
+                  {
+                    "term": {
+                      "attrValueList.productAttributeId": {
+                        "value": "34",
+                        "boost": 1
+                      }
+                    }
+                  },
+                  {
+                    "terms": {
+                      "attrValueList.value": [
+                        "abc"
+                      ],
+                      "boost": 1
+                    }
+                  }
+                ],
+                "adjust_pure_negative": true,
+                "boost": 1
+              }
+            },
+            "path": "attrValueList",
+            "ignore_unmapped": false,
+            "score_mode": "none",
+            "boost": 1
+          }
+        },
+        {
+          "nested": {
+            "query": {
+              "bool": {
+                "must": [
+                  {
+                    "term": {
+                      "attrValueList.productAttributeId": {
+                        "value": "35",
+                        "boost": 1
+                      }
+                    }
+                  },
+                  {
+                    "terms": {
+                      "attrValueList.value": [
+                        "xyz",
+                        "hji",
+                        "xxd"
+                      ],
+                      "boost": 1
+                    }
+                  }
+                ],
+                "adjust_pure_negative": true,
+                "boost": 1
+              }
+            },
+            "path": "attrValueList",
+            "ignore_unmapped": false,
+            "score_mode": "none",
+            "boost": 1
+          }
+        }
+      ],
+      "adjust_pure_negative": true,
+      "boost": 1
+    }
+  },
+  "sort": [
+    {
+      "price": {
+        "order": "desc"
+      }
+    }
+  ],
+  "aggregations": {
+    "brandAgg": {
+      "terms": {
+        "field": "brandId"
+      },
+      "aggregations": {
+        "brandNameAgg": {
+          "terms": {
+            "field": "brandName"
+          }
+        }
+      }
+    },
+    "categoryAgg": {
+      "terms": {
+        "field": "productCategoryId"
+      },
+      "aggregations": {
+        "categoryNameAgg": {
+          "terms": {
+            "field": "productCategoryName"
+          }
+        }
+      }
+    },
+    "attrAgg": {
+      "nested": {
+        "path": "attrValueList"
+      },
+      "aggs": {
+        "attrIdAgg": {
+          "terms": {
+            "field": "attrValueList.productAttributeId"
+          },
+          "aggregations": {
+            "attrNameAgg": {
+              "terms": {
+                "field": "attrValueList.name"
+              }
+            },
+            "attrValueAgg": {
+              "terms": {
+                "field": "attrValueList.value"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "highlight": {
+    "pre_tags": [
+      "<font color='red'>"
+    ],
+    "post_tags": [
+      "</font>"
+    ],
+    "fields": {
+      "name": {}
+    }
+  }
+}
+
+
+
+

@@ -1,0 +1,817 @@
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <!-- Start book JavaSE -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>唯一约束 | JavaSE</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="author" content="姜伟">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../../../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../../../gitbook/plugins/gitbook-plugin-splitter/splitter.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../../gitbook/plugins/gitbook-plugin-tbfed-pagefooter/footer.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../../gitbook/plugins/gitbook-plugin-chapter-fold/chapter-fold.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../../gitbook/plugins/gitbook-plugin-prism/prism.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../../../chapter02/section02/p06/s03.html" />
+    
+    
+    <link rel="prev" href="../../../chapter02/section02/p06/s01.html" />
+    
+
+        <!-- head:end -->
+    </head>
+    <body>
+        <!-- body:start -->
+        
+    <div class="book"
+        data-level="2.1.5.2"
+        data-chapter-title="唯一约束"
+        data-filepath="chapter02/section02/p06/s02.md"
+        data-basepath="../../.."
+        data-revision="Sat May 14 2022 08:42:14 GMT+0800 (中国标准时间)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        介绍
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="chapter01/section01.html">
+            
+                
+                    <a href="../../../chapter01/section01.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        数据库概述
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="chapter01/section02.html">
+            
+                
+                    <a href="../../../chapter01/section02.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        数据库分类
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="chapter01/section03.html">
+            
+                
+                    <a href="../../../chapter01/section03.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        关系型数据库
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="chapter01/section04.html">
+            
+                
+                    <a href="../../../chapter01/section04.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        MySQL的安装和配置
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="chapter01/section05.html">
+            
+                
+                    <a href="../../../chapter01/section05.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                        连接数据库
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="chapter01/section06.html">
+            
+                
+                    <a href="../../../chapter01/section06.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                        MySQL数据类型
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="chapter01/section07.html">
+            
+                
+                    <a href="../../../chapter01/section07.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                        MySQL运算符
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="chapter01/section08.html">
+            
+                
+                    <a href="../../../chapter01/section08.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.7.</b>
+                        
+                        MySQL语法规范
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="chapter02/section01.html">
+            
+                
+                    <a href="../../../chapter02/section01.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        MySQL语言组成
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="chapter02/section02/p01.html">
+            
+                
+                    <a href="../../../chapter02/section02/p01.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        结构操作DDL
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="chapter02/section02/p02.html">
+            
+                
+                    <a href="../../../chapter02/section02/p02.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.1.</b>
+                        
+                        数据库结构
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="chapter02/section02/p03.html">
+            
+                
+                    <a href="../../../chapter02/section02/p03.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.2.</b>
+                        
+                        表结构
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="chapter02/section02/p04.html">
+            
+                
+                    <a href="../../../chapter02/section02/p04.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.3.</b>
+                        
+                        字符集和校对集
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="chapter02/section02/p05.html">
+            
+                
+                    <a href="../../../chapter02/section02/p05.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.4.</b>
+                        
+                        乱码问题
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="chapter02/section02/p06.html">
+            
+                
+                    <a href="../../../chapter02/section02/p06.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.5.</b>
+                        
+                        约束和索引
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.5.1" data-path="chapter02/section02/p06/s01.html">
+            
+                
+                    <a href="../../../chapter02/section02/p06/s01.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.5.1.</b>
+                        
+                        主键约束
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.1.5.2" data-path="chapter02/section02/p06/s02.html">
+            
+                
+                    <a href="../../../chapter02/section02/p06/s02.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.5.2.</b>
+                        
+                        唯一约束
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5.3" data-path="chapter02/section02/p06/s03.html">
+            
+                
+                    <a href="../../../chapter02/section02/p06/s03.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.5.3.</b>
+                        
+                        外键约束
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5.4" data-path="chapter02/section02/p06/s04.html">
+            
+                
+                    <a href="../../../chapter02/section02/p06/s04.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.5.4.</b>
+                        
+                        非空约束
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5.5" data-path="chapter02/section02/p06/s05.html">
+            
+                
+                    <a href="../../../chapter02/section02/p06/s05.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.5.5.</b>
+                        
+                        自增约束
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5.6" data-path="chapter02/section02/p06/s06.html">
+            
+                
+                    <a href="../../../chapter02/section02/p06/s06.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.5.6.</b>
+                        
+                        默认值约束
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5.7" data-path="chapter02/section02/p06/s07.html">
+            
+                
+                    <a href="../../../chapter02/section02/p06/s07.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.5.7.</b>
+                        
+                        检查约束
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="chapter02/section03.html">
+            
+                
+                    <a href="../../../chapter02/section03.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        增删改DML
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="chapter02/section04/p01.html">
+            
+                
+                    <a href="../../../chapter02/section04/p01.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        数据库查询DQL
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.3.1" data-path="chapter02/section04/p02.html">
+            
+                
+                    <a href="../../../chapter02/section04/p02.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.1.</b>
+                        
+                        查询语句
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.2" data-path="chapter02/section04/p03.html">
+            
+                
+                    <a href="../../../chapter02/section04/p03.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.2.</b>
+                        
+                        函数和流程控制语句
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.3" data-path="chapter02/section04/p04.html">
+            
+                
+                    <a href="../../../chapter02/section04/p04.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.3.</b>
+                        
+                        多表查询
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.4" data-path="chapter02/section04/p05.html">
+            
+                
+                    <a href="../../../chapter02/section04/p05.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.4.</b>
+                        
+                        子查询
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="chapter02/section05.html">
+            
+                
+                    <a href="../../../chapter02/section05.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        数据库事务
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="chapter02/section06.html">
+            
+                
+                    <a href="../../../chapter02/section06.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        数据库管理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="chapter02/section07.html">
+            
+                
+                    <a href="../../../chapter02/section07.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                        数据库的备份和导出
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="chapter03/section01.html">
+            
+                
+                    <a href="../../../chapter03/section01.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        JDBC
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="chapter03/section02.html">
+            
+                
+                    <a href="../../../chapter03/section02.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        JDBC代码实现
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="chapter03/section03.html">
+            
+                
+                    <a href="../../../chapter03/section03.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        PrepareStatement的使用
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="chapter03/section04.html">
+            
+                
+                    <a href="../../../chapter03/section04.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        数据库连接池
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="chapter03/section05.html">
+            
+                
+                    <a href="../../../chapter03/section05.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        自定义封装JDBC工具类
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="chapter03/section06.html">
+            
+                
+                    <a href="../../../chapter03/section06.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Apache的dbutils介绍
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    本书使用 GitBook 发布
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../../" >JavaSE</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h2 id="&#x552F;&#x4E00;&#x7EA6;&#x675F;">&#x552F;&#x4E00;&#x7EA6;&#x675F;</h2>
+<p>&#x88AB;&#x552F;&#x4E00;&#x7EA6;&#x675F;&#x7684;&#x5B57;&#x6BB5;&#xFF0C;&#x5B83;&#x91CC;&#x9762;&#x586B;&#x5165;&#x7684;&#x503C;&#x4E0D;&#x5141;&#x8BB8;&#x91CD;&#x590D;&#x3002;</p>
+<h3 id="&#x552F;&#x4E00;&#x7EA6;&#x675F;&#x7279;&#x70B9;">&#x552F;&#x4E00;&#x7EA6;&#x675F;&#x7279;&#x70B9;</h3>
+<ul>
+<li>&#x552F;&#x4E00;&#x952E;&#x7EA6;&#x675F;&#x5217;&#x5141;&#x8BB8;&#x4E3A;null&#x3002;</li>
+<li>&#x540C;&#x4E00;&#x4E2A;&#x8868;&#x53EF;&#x4EE5;&#x6709;&#x591A;&#x4E2A;&#x552F;&#x4E00;&#x7EA6;&#x675F;&#x3002;</li>
+<li><p>&#x552F;&#x4E00;&#x7EA6;&#x675F;&#x53EF;&#x4EE5;&#x662F;&#x67D0;&#x4E00;&#x4E2A;&#x5217;&#x7684;&#x503C;&#x552F;&#x4E00;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x591A;&#x4E2A;&#x5217;&#x7EC4;&#x5408;&#x503C;&#x7684;&#x552F;&#x4E00;&#x3002;</p>
+</li>
+<li><p>MySQL&#x4F1A;&#x7ED9;&#x552F;&#x4E00;&#x7EA6;&#x675F;&#x7684;&#x5217;&#x4E0A;&#x9ED8;&#x8BA4;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x552F;&#x4E00;&#x7D22;&#x5F15;&#x3002;</p>
+</li>
+</ul>
+<ul>
+<li>&#x5220;&#x9664;&#x552F;&#x4E00;&#x952E;&#x53EA;&#x80FD;&#x901A;&#x8FC7;&#x5220;&#x9664;&#x5BF9;&#x5E94;&#x7D22;&#x5F15;&#x7684;&#x65B9;&#x5F0F;&#x5220;&#x9664;&#xFF0C;&#x5220;&#x9664;&#x65F6;&#x9700;&#x8981;&#x6307;&#x5B9A;&#x552F;&#x4E00;&#x952E;&#x7D22;&#x5F15;&#x540D;&#x3002;</li>
+</ul>
+<h3 id="&#x6DFB;&#x52A0;&#x552F;&#x4E00;&#x7EA6;&#x675F;">&#x6DFB;&#x52A0;&#x552F;&#x4E00;&#x7EA6;&#x675F;</h3>
+<ul>
+<li><p>&#x65B9;&#x5F0F;&#x4E00;&#xFF1A;&#x5EFA;&#x8868;&#x65F6;&#x6307;&#x5B9A;&#x7EA6;&#x675F;</p>
+<pre><code class="lang-mysql">create table [&#x6570;&#x636E;&#x540D;.]&#x8868;&#x540D;(
+    &#x5B57;&#x6BB5;&#x540D;1 &#x6570;&#x636E;&#x7C7B;&#x578B;  primary key ,
+    &#x5B57;&#x6BB5;&#x540D;2 &#x6570;&#x636E;&#x7C7B;&#x578B; unique key,
+    ....
+);
+
+create table [&#x6570;&#x636E;&#x540D;.]&#x8868;&#x540D;(
+    &#x5B57;&#x6BB5;&#x540D;1 &#x6570;&#x636E;&#x7C7B;&#x578B;  primary key ,
+    &#x5B57;&#x6BB5;&#x540D;2 &#x6570;&#x636E;&#x7C7B;&#x578B;,
+    &#x5B57;&#x6BB5;&#x540D;3 &#x6570;&#x636E;&#x7C7B;&#x578B;,
+    ....,
+    unique key(&#x590D;&#x5408;&#x552F;&#x4E00;&#x5B57;&#x6BB5;&#x5217;&#x8868;)#&#x5982;&#x679C;&#x662F;&#x590D;&#x5408;&#x552F;&#x4E00;&#x952E;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x9700;&#x8981;&#x5728;&#x6240;&#x6709;&#x5B57;&#x6BB5;&#x5217;&#x8868;&#x540E;&#x9762;&#x4F7F;&#x7528;&#x8FD9;&#x79CD;&#x5F62;&#x5F0F;&#x6307;&#x5B9A;&#xFF0C;&#x4E0D;&#x80FD;&#x5728;&#x5B57;&#x6BB5;&#x540E;&#x9762;&#x76F4;&#x63A5;&#x52A0;unique key
+);
+</code></pre>
+</li>
+<li><p>&#x65B9;&#x5F0F;&#x4E8C;&#xFF1A;&#x521B;&#x5EFA;&#x8868;&#x683C;&#x4EE5;&#x540E;&#x8FFD;&#x52A0;&#x7EA6;&#x675F;&#x3002;</p>
+<pre><code class="lang-mysql">alter table &#x8868;&#x540D;&#x79F0; add [constraint &#x7EA6;&#x675F;&#x540D;] unique [key] (&#x5B57;&#x6BB5;&#x540D;&#x5217;&#x8868;);
+#&#x5982;&#x679C;&#x6CA1;&#x6709;&#x6307;&#x5B9A;&#x7EA6;&#x675F;&#x540D;&#xFF0C;(&#x5B57;&#x6BB5;&#x540D;&#x5217;&#x8868;)&#x4E2D;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x5B57;&#x6BB5;&#x7684;&#xFF0C;&#x9ED8;&#x8BA4;&#x662F;&#x8BE5;&#x5B57;&#x6BB5;&#x540D;
+# &#x5982;&#x679C;&#x662F;&#x591A;&#x4E2A;&#x5B57;&#x6BB5;&#x7684;&#x9ED8;&#x8BA4;&#x662F;&#x5B57;&#x6BB5;&#x540D;&#x5217;&#x8868;&#x7684;&#x7B2C;1&#x4E2A;&#x5B57;&#x6BB5;&#x540D;
+</code></pre>
+</li>
+</ul>
+<h3 id="&#x5220;&#x9664;&#x552F;&#x4E00;&#x7EA6;&#x675F;">&#x5220;&#x9664;&#x552F;&#x4E00;&#x7EA6;&#x675F;</h3>
+<pre><code class="lang-mysql">ALTER TABLE &#x8868;&#x540D;&#x79F0; DROP INDEX &#x552F;&#x4E00;&#x6027;&#x7EA6;&#x675F;&#x540D;;
+#&#x6CE8;&#x610F;&#xFF1A;&#x5982;&#x679C;&#x5FD8;&#x8BB0;&#x540D;&#x79F0;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x201C;show index from &#x8868;&#x540D;&#x79F0;;&#x201D;&#x67E5;&#x770B;
+</code></pre>
+<footer class="page-footer"><span class="copyright">&#x5C1A;&#x7845;&#x8C37;@atguigu all right reserved</span><span class="footer-modification">&#x59DC;&#x4F1F;
+2021-09-29 23:09:20
+</span></footer>
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../../chapter02/section02/p06/s01.html" class="navigation navigation-prev " aria-label="Previous page: 主键约束"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../../chapter02/section02/p06/s03.html" class="navigation navigation-next " aria-label="Next page: 外键约束"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../../gitbook/app.js"></script>
+
+    
+    <script src="../../../gitbook/plugins/gitbook-plugin-hide-element/plugin.js"></script>
+    
+
+    
+    <script src="../../../gitbook/plugins/gitbook-plugin-splitter/splitter.js"></script>
+    
+
+    
+    <script src="../../../gitbook/plugins/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+    
+
+    
+    <script src="../../../gitbook/plugins/gitbook-plugin-copy-code-button/toggle.js"></script>
+    
+
+    
+    <script src="../../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"hide-element":{"elements":[".gitbook-link"]},"favicon":"favicon.ico","tbfed-pagefooter":{"copyright":"尚硅谷@atguigu","modify_label":"姜伟","modify_format":"YYYY-MM-DD HH:mm:ss"},"splitter":{},"custom-favicon":{},"popup":{},"chapter-fold":{},"prism":{},"copy-code-button":{},"highlight":{},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+    </body>
+    <!-- End of book JavaSE -->
+</html>

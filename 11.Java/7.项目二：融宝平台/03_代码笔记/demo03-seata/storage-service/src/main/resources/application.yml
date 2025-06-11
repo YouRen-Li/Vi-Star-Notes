@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: storage-service
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://192.168.1.171:3396/db_storage #?serverTimezone=GMT%2B8&characterEncoding=utf-8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+server:
+  port: 8112
+seata:
+  tx-service-group: my_test_tx_group
